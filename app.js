@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const chalk  = require('chalk');
 const passport = require('passport');
 const errorhandler = require('errorhandler');
+const expressValidator = require('express-validator');
 //loading env file
 dotenv.load({path:'.env'});
 
@@ -43,6 +44,9 @@ app.set('port',process.env.PORT || 3000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//init validator
+app.use(expressValidator([]));
+
 //routes
 app.use(require('./routes'));
 
@@ -50,7 +54,7 @@ app.use(require('./routes'));
 app.use((req,res,next) =>{
 	const error  = new Error('Not found');
 	error.status = 404;
-	next(err);
+	next(error);
 })
 
 app.use((err,req,res,next) =>{
