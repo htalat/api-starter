@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const router = require('express').Router(); 
 const Post = require('../../models/Post');
 const User = require('../../models/User');
-const Util = require('../../util');
+const Util = require('../../helper/util');
 
 router.get('/',(req,res,next) =>{
 	Post.find({})
-	.populate('author')
+	.populate('author', 'name')
 	.then(data =>{
 		res.status(200).json({
 			data: data

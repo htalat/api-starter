@@ -1,6 +1,6 @@
 const router = require('express').Router(); 
 const User = require('../../models/User');
-const Util = require('../../util');
+const Util = require('../../helper/util');
 
 router.post('/', (req,res,next)=>{
 	
